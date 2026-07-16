@@ -2,18 +2,12 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from pathlib import Path
 
-# =========================
-# Configurações
-# =========================
-
 INPUT_FILE = "results/legacy/QAG/aberto/metrics_all_models.csv"
 OUTPUT_DIR = Path("results/metricas")
 OUTPUT_DIR.mkdir(exist_ok=True)
 
 METRIC_COLS = ["rouge-l", "bleu", "bert_f1", "connectedness"]
 
-# Pesos para o score geral
-# Todos iguais por padrão
 WEIGHTS = {
     "rouge-l": 1.0,
     "bleu": 1.0,
@@ -22,15 +16,7 @@ WEIGHTS = {
 }
 
 
-# =========================
-# Carregamento
-# =========================
-
 df = pd.read_csv(INPUT_FILE)
-
-# Corrige possível variação no nome da coluna
-if "connectedess" in df.columns and "connectedness" not in df.columns:
-    df = df.rename(columns={"connectedess": "connectedness"})
 
 missing_cols = [col for col in ["modelo"] + METRIC_COLS if col not in df.columns]
 
@@ -40,22 +26,11 @@ if missing_cols:
 df_eval = df[["modelo"] + METRIC_COLS].copy()
 
 
-# =========================
-# Ranking por métrica
-# =========================
-
 for metric in METRIC_COLS:
     df_eval[f"rank_{metric}"] = df_eval[metric].rank(
         ascending=False,
         method="min"
     ).astype(int)
-
-
-# =========================
-# Score geral normalizado
-# =========================
-# Como as métricas já estão entre 0 e 1, o score é uma média ponderada.
-# Depois multiplicamos por 100 para facilitar a leitura.
 
 total_weight = sum(WEIGHTS.values())
 
