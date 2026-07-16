@@ -1,0 +1,2 @@
+modelo,arquivo_qag,rouge-1,rouge-2,rouge-l,bleu,bert_precision,bert_recall,bert_f1,connectedness,num_exemplos,device
+google_gemma-4-31b-it,google_gemma-4-31b-it_QAG.csv,0.4880989698764203,0.31630812892470583,0.4403513863167737,0.28127245701425524,0.81686931848526,0.7953764796257019,0.8041407465934753,0.8159109354019165,101,cpu

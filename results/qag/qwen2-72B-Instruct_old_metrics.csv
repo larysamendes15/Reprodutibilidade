@@ -1,0 +1,2 @@
+modelo,arquivo_qag,rouge-1,rouge-2,rouge-l,bleu,bert_precision,bert_recall,bert_f1,connectedness,num_exemplos,device
+qwen2-72B-Instruct_old,qwen2-72B-Instruct_old_QAG.csv,0.47500091448687676,0.3071103971262135,0.4280217538885373,0.29460361961764886,0.8063724040985107,0.7959992289543152,0.7997517585754395,0.8323589563369751,101,cpu

@@ -1,0 +1,2 @@
+modelo,arquivo_qag,rouge-1,rouge-2,rouge-l,bleu,bert_precision,bert_recall,bert_f1,connectedness,num_exemplos,device
+meta_llama-3.3-70b-instruct,meta_llama-3.3-70b-instruct_QAG.csv,0.46815843946569174,0.31084593882669703,0.42538025749085523,0.31305616066193626,0.8008236885070801,0.7888269424438477,0.7930679321289062,0.8011875748634338,101,cpu

@@ -1,0 +1,2 @@
+modelo,arquivo_qag,rouge-1,rouge-2,rouge-l,bleu,bert_precision,bert_recall,bert_f1,connectedness,num_exemplos,device
+openai_gpt-oss-120b,openai_gpt-oss-120b_QAG.csv,0.3809974091467805,0.18531968004986113,0.3392952579100289,0.12033572562439804,0.7567481398582458,0.7800066471099854,0.7668092846870422,0.8204057216644287,101,cpu

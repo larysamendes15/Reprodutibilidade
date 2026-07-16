@@ -1,0 +1,2 @@
+modelo,arquivo_qag,rouge-1,rouge-2,rouge-l,bleu,bert_precision,bert_recall,bert_f1,connectedness,num_exemplos,device
+mistralai_mixtral-8x22b-instruct-v0.1,mistralai_mixtral-8x22b-instruct-v0.1_QAG.csv,0.4882818646597228,0.3285428361115872,0.44898697205620197,0.3089943349097785,0.797356128692627,0.8047767877578735,0.7998708486557007,0.8304556608200073,101,cpu

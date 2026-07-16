@@ -1,0 +1,2 @@
+modelo,arquivo_qag,rouge-1,rouge-2,rouge-l,bleu,bert_precision,bert_recall,bert_f1,connectedness,num_exemplos,device
+claude-opus-4-6,claude-opus-4-6_QAG.csv,0.3294618721707949,0.17144272633816177,0.3015506923315019,0.09559163495815706,0.6826277375221252,0.7924787998199463,0.7326786518096924,0.7837015986442566,101,cpu

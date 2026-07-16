@@ -1,0 +1,2 @@
+modelo,arquivo_qag,rouge-1,rouge-2,rouge-l,bleu,bert_precision,bert_recall,bert_f1,connectedness,num_exemplos,device
+gemini-3-pro-preview,gemini-3-pro-preview_QAG.csv,0.4618227724479808,0.29299053978496087,0.411126618388395,0.27647289703637284,0.8095946311950684,0.7892318367958069,0.7973372936248779,0.8164947628974915,101,cpu

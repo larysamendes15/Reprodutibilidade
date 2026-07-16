@@ -1,0 +1,25 @@
+# Núcleo de análise
+pandas>=2.0
+numpy>=1.24
+scipy>=1.10
+matplotlib>=3.7
+krippendorff>=0.6
+
+# Métricas de avaliação de texto
+sacrebleu>=2.3
+rouge>=1.0.1
+bert-score>=0.3.13
+sentence-transformers>=2.2
+torch>=2.0
+
+# Dataset
+datasets>=2.14
+
+# Clientes de API (etapas 1 e 3)
+openai>=1.30
+anthropic>=0.30
+google-genai>=1.0
+google-generativeai>=0.8
+
+# Utilidades
+tqdm>=4.66

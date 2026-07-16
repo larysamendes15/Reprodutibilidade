@@ -1,0 +1,5 @@
+metrica,melhor_modelo,valor
+rouge-l,mixtral-8x22B-Instruct-v0.1,0.4433705156838788
+bleu,meta_llama-3.3-70b-instruct,0.3065014565143286
+bert_f1,google_gemma-4-31b-it,0.8026441931724548
+connectedness,qwen2-72B-Instruct,0.8323589563369751

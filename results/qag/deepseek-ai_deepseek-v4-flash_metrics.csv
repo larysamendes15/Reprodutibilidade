@@ -1,0 +1,2 @@
+modelo,arquivo_qag,rouge-1,rouge-2,rouge-l,bleu,bert_precision,bert_recall,bert_f1,connectedness,num_exemplos,device
+deepseek-ai_deepseek-v4-flash,deepseek-ai_deepseek-v4-flash_QAG.csv,0.4654576488679754,0.2935692356566972,0.4267020431571351,0.25286072850826596,0.8115662932395935,0.7883058786392212,0.7979674339294434,0.8111470937728882,101,cpu
