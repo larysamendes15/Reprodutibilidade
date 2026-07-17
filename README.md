@@ -228,7 +228,6 @@ Código sob licença MIT (ver `LICENSE`).
   author = {Larysa Mendes},
   title  = {Avaliação de LLMs como Julgadores em QA de Direito Tributário Brasileiro},
   year   = {2026},
-  doi    = {10.5281/zenodo.XXXXXXX},
   url    = {https://github.com/larysamendes15/Reprodutibilidade}
 }
 ```
