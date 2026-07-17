@@ -111,15 +111,10 @@ MODELS_TO_RUN = [
     {
         "model": "z-ai/glm-5.1",
         "alias": "z-ai_glm-5.1",
+    },{
+         "model": "qwen/qwen2-72b-instruct",
+         "alias": "qwen2-72B-Instruct",
     },
-
-    # Modelo antigo (rodada anterior). Confirme o ID exato no catálogo da
-    # NVIDIA NIM antes de descomentar.
-    #
-    # {
-    #     "model": "qwen/qwen2-72b-instruct",
-    #     "alias": "qwen2-72B-Instruct",
-    # },
 ]
 
 
