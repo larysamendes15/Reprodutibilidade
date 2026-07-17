@@ -1,37 +1,27 @@
-# ============================================================
-# Núcleo de análise (etapas 2, 4 e 5 — rodam sem chaves de API)
-# ============================================================
+
 pandas>=2.0
 numpy>=1.24
 scipy>=1.10
 matplotlib>=3.7
 krippendorff>=0.6
-openpyxl>=3.1          # exportação .xlsx em ranking_erros_perguntas.py
+openpyxl>=3.1         
 
-# ============================================================
 # Métricas de avaliação de texto
-# ============================================================
 sacrebleu>=2.3
-rouge>=1.0.1           # usada em calcular_metricas_automaticas.py
-rouge-score>=0.1.2     # usada em analise_correlacao_por_resposta.py
+rouge>=1.0.1          
+rouge-score>=0.1.2    
 bert-score>=0.3.13
 sentence-transformers>=2.2
-torch>=2.0             # CPU funciona; GPU acelera BERTScore/Connectedness
+torch>=2.0      
 
-# ============================================================
 # Dataset
-# ============================================================
 datasets>=2.14
 
-# ============================================================
 # Clientes de API (apenas etapas 1 e 3)
-# ============================================================
 openai>=1.30
 anthropic>=0.30
 google-genai>=1.0
 google-generativeai>=0.8
 
-# ============================================================
 # Utilidades
-# ============================================================
 tqdm>=4.66
