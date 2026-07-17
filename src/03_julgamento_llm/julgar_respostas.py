@@ -12,10 +12,10 @@ Diferença para o script binário:
     score < 3    -> INCORRETO
 
 Entrada:
-    results/legacy/QAG/aberto/*_QAG.csv
+    results/respostas_geradas/*_QAG.csv
 
 Saída:
-    results/legacy/result_judges_score/
+    results/scores_julgadores/
 
 Colunas esperadas no CSV:
     Q, A, A_model
@@ -63,8 +63,8 @@ ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY", "")
 # CONFIGURAÇÕES
 # =========================
 
-CSV_DIR = Path("results/qag")
-OUTPUT_DIR = Path("results/judges_scores")
+CSV_DIR = Path("results/respostas_geradas")
+OUTPUT_DIR = Path("results/scores_julgadores")
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 N_QUESTOES_TESTE = 101

@@ -11,7 +11,7 @@ Uso:
     pip install pandas numpy scipy rouge-score sacrebleu bert-score sentence-transformers
     python analise_correlacao_por_resposta.py [pasta_dos_csvs]
 
-Padrão: results/judges_scores
+Padrão: results/scores_julgadores
 
 ATENÇÃO: BERTScore e Sentence-BERT baixam modelos do HuggingFace na primeira
 execução e levam vários minutos em CPU para 1.111 respostas. O script salva
@@ -26,7 +26,7 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 
-PASTA_PADRAO = "results/judges_scores"
+PASTA_PADRAO = "results/scores_julgadores"
 CACHE = "results/metricas/metricas_por_resposta.csv"
 SEED = 42
 

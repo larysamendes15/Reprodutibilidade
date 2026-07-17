@@ -66,7 +66,7 @@ NIM_API_KEY = os.getenv("NIM_API_KEY", "")
 DATASET_DIR = "data/tax_law_brazil_cosit"
 SPLIT_NAME = "tax_law"
 
-OUTPUT_DIR = "results"
+OUTPUT_DIR = "results/respostas_geradas"
 
 TEMPERATURE = 0.1
 MAX_TOKENS = 4096
@@ -85,16 +85,40 @@ SAVE_EVERY = 25
 
 MODELS_TO_RUN = [
     {
+        "model": "deepseek-ai/deepseek-v4-flash",
+        "alias": "deepseek-ai_deepseek-v4-flash",
+    },
+    {
+        "model": "google/gemma-4-31b-it",
+        "alias": "google_gemma-4-31b-it",
+    },
+    {
+        "model": "meta/llama-3.3-70b-instruct",
+        "alias": "meta_llama-3.3-70b-instruct",
+    },
+    {
+        "model": "mistralai/mixtral-8x22b-instruct-v0.1",
+        "alias": "mistralai_mixtral-8x22b-instruct-v0.1",
+    },
+    {
+        "model": "openai/gpt-oss-120b",
+        "alias": "openai_gpt-oss-120b",
+    },
+    {
         "model": "qwen/qwen3.5-122b-a10b",
         "alias": "qwen_qwen3.5-122b-a10b",
     },
+    {
+        "model": "z-ai/glm-5.1",
+        "alias": "z-ai_glm-5.1",
+    },
 
-    # Se o Qwen2 antigo estiver disponível no catálogo da NVIDIA,
-    # confirme o ID exato e descomente.
+    # Modelo antigo (rodada anterior). Confirme o ID exato no catálogo da
+    # NVIDIA NIM antes de descomentar.
     #
     # {
     #     "model": "qwen/qwen2-72b-instruct",
-    #     "alias": "qwen2-72B-Instruct_old",
+    #     "alias": "qwen2-72B-Instruct",
     # },
 ]
 

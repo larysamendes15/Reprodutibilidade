@@ -26,13 +26,13 @@ Exemplos:
     qwen2-72B-Instruct_old_QAG_101_3_julgadores_score_batch.csv
     deepseek-ai_deepseek-v4-flash_QAG_julgadores_score.csv
 
-Como rodar:
-    python analisa_erros_por_pergunta.py \
-      --input-dir results/legacy/result_judges_score \
+Como rodar (a partir da raiz do repositório):
+    python src/04_analises/analise_erros_por_pergunta.py \
+      --input-dir results/scores_julgadores \
       --out-dir results/erros
 
-Depois gere os gráficos novamente:
-    python graficos_explicativos_erros.py \
+Depois gere os gráficos:
+    python src/05_graficos/graficos_explicativos_erros.py \
       --input-dir results/erros \
       --out-dir results/figuras \
       --top-n 14
@@ -574,7 +574,7 @@ def main() -> None:
     parser.add_argument(
         "--input-dir",
         type=str,
-        default=".",
+        default="results/scores_julgadores",
         help="Pasta onde estão os CSVs detalhados por modelo.",
     )
 

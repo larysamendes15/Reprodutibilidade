@@ -8,20 +8,23 @@ e Claude por modelo respondente + linha do comitê. Lê os CSVs de julgadores.
 Figura 4 (desalinhamento_ranking.pdf): slope chart ligando o ranking
 jurídico (Tabela 2) ao ranking médio das métricas (Tabela 5). Dados embutidos.
 
-Uso:
+Uso (a partir da raiz do repositório):
     pip install pandas numpy matplotlib
-    python gerar_figuras_2_e_4.py [pasta_dos_csvs]
+    python src/05_graficos/graficos_calibracao_e_ranking.py [pasta_dos_csvs]
 """
 
 import glob
 import os
 import sys
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-PASTA_PADRAO = "results/judges_scores"
+PASTA_PADRAO = "results/scores_julgadores"
+PASTA_SAIDA = Path("results/figuras")
+PASTA_SAIDA.mkdir(parents=True, exist_ok=True)
 
 # Rótulos curtos, na ordem do ranking jurídico (Tabela 2)
 ORDEM = [
@@ -107,8 +110,9 @@ def figura2(pasta: str):
     ax.legend(ncol=4, fontsize=7.5, frameon=False, loc="upper right")
     ax.grid(axis="y", color="0.9", lw=0.6)
     fig.tight_layout()
-    fig.savefig("calibracao_julgadores.pdf", bbox_inches="tight")
-    print("Gerado: calibracao_julgadores.pdf")
+    saida = PASTA_SAIDA / "calibracao_julgadores.pdf"
+    fig.savefig(saida, bbox_inches="tight")
+    print(f"Gerado: {saida}")
 
 
 def figura4():
@@ -147,8 +151,9 @@ def figura4():
         ax.spines[lado].set_visible(False)
     ax.tick_params(length=0)
     fig.tight_layout()
-    fig.savefig("desalinhamento_ranking.pdf", bbox_inches="tight")
-    print("Gerado: desalinhamento_ranking.pdf")
+    saida = PASTA_SAIDA / "desalinhamento_ranking.pdf"
+    fig.savefig(saida, bbox_inches="tight")
+    print(f"Gerado: {saida}")
 
 
 if __name__ == "__main__":

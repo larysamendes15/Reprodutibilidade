@@ -22,9 +22,8 @@ Como usar:
     python analise_circularidade_juizes.py caminho/do/arquivo_ou_pasta
 
 Exemplos:
-    python analise_circularidade_juizes.py all_results_101_3_julgadores_score_batch.csv
-    python analise_circularidade_juizes.py results/judges_scores
-    python analise_circularidade_juizes.py .
+    python analise_circularidade_juizes.py results/scores_julgadores/all_results_101_3_julgadores_score_batch.csv
+    python analise_circularidade_juizes.py results/scores_julgadores
 
 Saídas:
     results/circularidade/
@@ -94,7 +93,7 @@ MODELOS_PRINCIPAIS = {
 }
 
 OUT = Path("results/circularidade")
-OUT.mkdir(exist_ok=True)
+OUT.mkdir(parents=True, exist_ok=True)
 
 
 # ============================================================
@@ -626,7 +625,7 @@ def main():
     if len(sys.argv) >= 2:
         input_path = Path(sys.argv[1])
     else:
-        input_path = Path(".")
+        input_path = Path("results/scores_julgadores")
 
     print(f"Entrada: {input_path}")
 

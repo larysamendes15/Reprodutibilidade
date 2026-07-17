@@ -2,9 +2,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from pathlib import Path
 
-INPUT_FILE = "results/legacy/QAG/aberto/metrics_all_models.csv"
+INPUT_FILE = "results/respostas_geradas/metrics_all_models_new.csv"
 OUTPUT_DIR = Path("results/metricas")
-OUTPUT_DIR.mkdir(exist_ok=True)
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 METRIC_COLS = ["rouge-l", "bleu", "bert_f1", "connectedness"]
 

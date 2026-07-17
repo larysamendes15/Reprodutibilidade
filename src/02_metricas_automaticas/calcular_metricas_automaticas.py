@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-Avalia métricas (ROUGE, BLEU, BERTScore, Connectedness) para TODOS os CSVs *_QAG.csv em results/legacy/QAG.
+Avalia métricas (ROUGE, BLEU, BERTScore, Connectedness) para TODOS os CSVs *_QAG.csv em results/respostas_geradas.
 
 Cada arquivo *_QAG.csv deve conter colunas:
   Q        -> pergunta
@@ -10,8 +10,8 @@ Cada arquivo *_QAG.csv deve conter colunas:
   A_model  -> resposta do modelo
 
 Saídas:
-  results/legacy/QAG/metrics_all_models.csv   (uma linha por modelo)
-  results/legacy/QAG/<modelo>_metrics.csv     (opcional, um por modelo)
+  results/respostas_geradas/metrics_all_models_new.csv   (uma linha por modelo)
+  results/respostas_geradas/<modelo>_metrics.csv         (opcional, um por modelo)
 
 Instalar:
   pip install pandas rouge sacrebleu bert-score sentence-transformers torch tqdm transformers
@@ -48,7 +48,7 @@ DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 # =========================
 # CONFIGURAÇÕES
 # =========================
-INPUT_DIR = Path("results/qag")
+INPUT_DIR = Path("results/respostas_geradas")
 GLOB_PATTERN = "*_QAG.csv"
 
 # Saída agregada

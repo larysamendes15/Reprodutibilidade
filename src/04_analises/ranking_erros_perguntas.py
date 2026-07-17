@@ -10,19 +10,17 @@ import pandas as pd
 # CONFIGURAÇÕES
 # ============================================================
 
-# CSV com o ranking de erros por pergunta.
-# Pode ser o seu arquivo:
-# 01_pareto_erros_legenda_perguntas.csv
-# ou outro arquivo com todas as perguntas.
-ARQUIVO_RANKING_ERROS = Path("results/figuras/01_pareto_erros_legenda_perguntas.csv")
+# CSV com o ranking de erros por pergunta, gerado na etapa 4 por
+# analise_erros_por_pergunta.py.
+ARQUIVO_RANKING_ERROS = Path("results/erros/02_ranking_perguntas_mais_erradas.csv")
 # Pasta onde estão os arquivos QAG dos modelos.
 # Cada arquivo deve ter colunas parecidas com:
 # Q, A, A_model
-PASTA_QAG_MODELOS = Path("results/qag")
+PASTA_QAG_MODELOS = Path("results/respostas_geradas")
 
 # Pasta de saída
 PASTA_SAIDA = Path("results/ranking_erros_perguntas")
-PASTA_SAIDA.mkdir(exist_ok=True)
+PASTA_SAIDA.mkdir(parents=True, exist_ok=True)
 
 ARQUIVO_SAIDA_XLSX = PASTA_SAIDA / "ranking_perguntas_erros_com_respostas.xlsx"
 ARQUIVO_SAIDA_CSV = PASTA_SAIDA / "ranking_perguntas_erros_com_respostas.csv"

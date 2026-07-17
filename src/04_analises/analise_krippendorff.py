@@ -7,7 +7,7 @@ Uso:
     pip install krippendorff pandas numpy
     python analise_krippendorff.py [csv_consolidado_ou_pasta]
 
-Sem argumento, usa a pasta results/judges_scores
+Sem argumento, usa a pasta results/scores_julgadores
 (concatena os csvs individuais por modelo, ignorando all_results*).
 
 Definições alinhadas ao artigo:
@@ -25,7 +25,7 @@ import numpy as np
 import pandas as pd
 import krippendorff
 
-CAMINHO_PADRAO = "results/judges_scores"
+CAMINHO_PADRAO = "results/scores_julgadores"
 
 SCORE_COLS = ["gpt_judge_score_0_5", "gemini_judge_score_0_5",
               "claude_judge_score_0_5"]

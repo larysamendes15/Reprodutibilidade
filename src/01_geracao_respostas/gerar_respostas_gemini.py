@@ -27,7 +27,7 @@ API_KEY = os.getenv("GEMINI_API_KEY", "")
 DATASET_DIR = "data/tax_law_brazil_cosit"
 
 # Pasta onde o CSV de saída será salvo
-OUTPUT_DIR = "results/legacy"
+OUTPUT_DIR = "results/respostas_geradas"
 
 # Nome do split dentro do DatasetDict
 SPLIT_NAME = "tax_law"

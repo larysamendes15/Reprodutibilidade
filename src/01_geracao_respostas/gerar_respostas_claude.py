@@ -27,7 +27,7 @@ from anthropic import Anthropic
 
 API_KEY = os.getenv("ANTHROPIC_API_KEY", "")
 DATASET_DIR = "data/tax_law_brazil_cosit"
-OUTPUT_DIR = "results/legacy"
+OUTPUT_DIR = "results/respostas_geradas"
 SPLIT_NAME = "tax_law"
 
 MODEL_NAME = "claude-opus-4-6"
