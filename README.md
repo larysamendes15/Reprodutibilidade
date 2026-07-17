@@ -3,7 +3,7 @@
 Pacote de reprodutibilidade do estudo sobre avaliação de modelos de linguagem
 (LLMs) em perguntas e respostas (QA) de legislação tributária brasileira,
 usando o dataset **Tax Law Brazil COSIT** (101 questões oficiais da Receita
-Federal). O experimento compara 11 modelos — abertos e proprietários — por meio
+Federal). O experimento compara 11 modelos, abertos e proprietários, por meio
 de métricas automáticas (ROUGE-L, BLEU, BERTScore, Connectedness) e do
 paradigma *LLM-as-a-judge* com 3 julgadores (GPT, Gemini e Claude, score 0–5),
 e analisa a confiabilidade desse julgamento: concordância entre julgadores
@@ -20,13 +20,15 @@ O estudo aborda quatro perguntas de pesquisa:
   tributário brasileiro, segundo julgadores LLM e métricas automáticas?
 * **RQ2:** Os 3 julgadores LLM concordam entre si (alfa de Krippendorff,
   unanimidade de categoria)?
-* **RQ3:** Existe viés de circularidade — julgadores favorecendo respostas do
+* **RQ3:** Existe viés de circularidade, isto é, julgadores favorecendo respostas do
   próprio modelo ou família?
 * **RQ4:** As métricas automáticas se alinham ao julgamento por LLM, por
   resposta e por modelo?
 
 Em síntese: pelos julgadores, o GPT-5.1 lidera (score médio 4,30/5) e o
-ranking por métricas automáticas é quase o inverso do ranking por julgadores; a concordância entre julgadores fica abaixo do limiar de confiabilidade usual (α = 0,628 < 0,667);
+ranking por métricas automáticas é quase o inverso do ranking por julgadores
+(correlações por modelo negativas e não significativas); a concordância entre
+julgadores fica abaixo do limiar de confiabilidade usual (α = 0,628 < 0,667);
 e o teste pareado de circularidade mostra o Gemini atribuindo à própria
 família +0,41 ponto em relação aos demais julgadores, enquanto Claude e GPT
 são mais duros consigo mesmos (−0,41 e −0,21).
@@ -139,11 +141,6 @@ REMEMBER: answer the question in portuguese.
 Helpful answer:
 ```
 
-Os scripts do Claude e do GPT usam adicionalmente um system prompt de
-assistente jurídico ("Você é um assistente jurídico especialista em direito
-tributário brasileiro..."); os scripts do Gemini e dos modelos abertos não
-usam system prompt.
-
 **Julgamento (3 julgadores, score 0–5).** Trecho das instruções e da escala; o
 prompt completo, incluindo os exemplos few-shot, está em
 `prompt/prompt_julgamento_score_0_5.txt`.
@@ -200,27 +197,27 @@ análises e figuras a partir dos CSVs versionados.
 ### Execução (a partir da raiz do repositório)
 
 ```bash
-# Etapa 1 — Geração de respostas (requer chaves de API)
+# Etapa 1: Geração de respostas (requer chaves de API)
 python src/01_geracao_respostas/gerar_respostas_modelos_abertos.py   # aceita --max-rows, --resume, --only <alias>
 python src/01_geracao_respostas/gerar_respostas_claude.py
 python src/01_geracao_respostas/gerar_respostas_gemini.py
 python src/01_geracao_respostas/gerar_respostas_gpt.py
 
-# Etapa 2 — Métricas automáticas (baixa modelos do Hugging Face na 1ª execução)
+# Etapa 2: Métricas automáticas (baixa modelos do Hugging Face na 1ª execução)
 python src/02_metricas_automaticas/calcular_metricas_automaticas.py
 python src/02_metricas_automaticas/gerar_ranking_metricas.py
 
-# Etapa 3 — Julgamento por LLMs (requer chaves de API)
+# Etapa 3: Julgamento por LLMs (requer chaves de API)
 python src/03_julgamento_llm/julgar_respostas.py
 
-# Etapa 4 — Análises (sem chaves; executar nesta ordem)
+# Etapa 4: Análises (sem chaves; executar nesta ordem)
 python src/04_analises/analise_krippendorff.py
 python src/04_analises/analise_circularidade_juizes.py
 python src/04_analises/analise_erros_por_pergunta.py
 python src/04_analises/ranking_erros_perguntas.py
 python src/04_analises/analise_correlacao_por_resposta.py
 
-# Etapa 5 — Figuras (sem chaves; executar nesta ordem)
+# Etapa 5: Figuras (sem chaves; executar nesta ordem)
 python src/05_graficos/graficos_calibracao_e_ranking.py
 python src/05_graficos/graficos_explicativos_erros.py --input-dir results/erros --out-dir results/figuras --top-n 14
 python src/05_graficos/graficos_top14_erros.py
@@ -242,7 +239,7 @@ Notas de reprodução:
 * `graficos_score_julgadores.py` requer o summary gerado pela etapa 3
   (`summary_101_3_julgadores_score_batch.csv`).
 * **Atalho:** para reproduzir apenas as análises e figuras, pule as etapas
-  1–3 — as saídas originais estão versionadas em `results/respostas_geradas/`
+  1–3; as saídas originais estão versionadas em `results/respostas_geradas/`
   e `results/scores_julgadores/`.
 
 ## Formato de saída
@@ -275,7 +272,7 @@ final não é CORRETO. Seeds fixas (`SEED = 42`) nos scripts de métricas.
 As tabelas abaixo foram calculadas a partir dos CSVs versionados em
 `results/` (101 questões por modelo, 1.111 respostas julgadas no total).
 
-**RQ1 — Ranking pelos julgadores LLM** (score médio 0–5, média dos 3
+**RQ1: Ranking pelos julgadores LLM** (score médio 0–5, média dos 3
 julgadores; contagens de categoria final):
 
 | Modelo | Score médio | Correto | Parcial | Incorreto |
@@ -292,7 +289,7 @@ julgadores; contagens de categoria final):
 | Qwen2 72B Instruct | 3,85 | 64 | 20 | 17 |
 | Llama 3.3 70B Instruct | 3,80 | 67 | 14 | 20 |
 
-**RQ1 — Ranking pelas métricas automáticas** (score geral = média simples das
+**RQ1: Ranking pelas métricas automáticas** (score geral = média simples das
 4 métricas, ×100):
 
 | Modelo | ROUGE-L | BLEU | BERT F1 | Connect. | Score geral |
@@ -314,25 +311,25 @@ julgadores (GPT-5.1, Claude Opus 4.6) são os últimos nas métricas de
 sobreposição lexical, indicando respostas corretas porém mais parafraseadas em
 relação ao texto oficial.
 
-**RQ2 — Concordância entre julgadores.** Alfa de Krippendorff ordinal geral de
+**RQ2: Concordância entre julgadores.** Alfa de Krippendorff ordinal geral de
 **0,628**, com unanimidade de categoria em **70,6%** das 1.111 respostas e
-desvio médio de score de 0,476 entre julgadores — abaixo do limiar de 0,667
+desvio médio de score de 0,476 entre julgadores, valor abaixo do limiar de 0,667
 usualmente aceito para conclusões provisórias, o que recomenda cautela ao usar
 um único julgador LLM. Por modelo avaliado, o alfa varia de 0,45 (respostas do
 Claude Opus 4.6) a 0,71 (respostas do Qwen2 72B).
 
-**RQ3 — Circularidade juiz–respondente.** Na comparação pareada (mesma
+**RQ3: Circularidade juiz–respondente.** Na comparação pareada (mesma
 resposta, julgador da mesma família vs. demais julgadores): Gemini atribui à
 própria família **+0,41** ponto (IC95% [0,25; 0,57]); Claude atribui **−0,41**
-(IC95% [−0,62; −0,21]) e GPT **−0,21** (IC95% [−0,31; −0,11]) — ou seja, no
+(IC95% [−0,62; −0,21]) e GPT **−0,21** (IC95% [−0,31; −0,11]); ou seja, no
 experimento, apenas o Gemini exibe auto-preferência; Claude e GPT são mais
 rigorosos com a própria família.
 
-**RQ4 — Métricas automáticas vs. julgadores.** Por resposta (n = 1.111), as
+**RQ4: Métricas automáticas vs. julgadores.** Por resposta (n = 1.111), as
 correlações são moderadas: BERTScore F1 (Pearson 0,50 / Spearman 0,53) e
 ROUGE-L (0,48 / 0,53) são as mais alinhadas, seguidas de BLEU (0,38 / 0,45) e
 Connectedness (0,37 / 0,34). Por modelo (n = 11), todas as correlações são
-negativas e não significativas — as métricas automáticas não reproduzem o
+negativas e não significativas: as métricas automáticas não reproduzem o
 ranking dos julgadores.
 
 ## Análise de erros
@@ -365,5 +362,6 @@ Código sob licença MIT (ver `LICENSE`).
 
 ## Referências
 
-* COSIT/Receita Federal do Brasil. **Perguntas e Respostas Pessoa Jurídica
-  2023.** Fonte das 101 questões e respostas oficiais do dataset.
+* COSIT/Receita Federal do Brasil. **Perguntas e Respostas Pessoa Jurídica 2023.** Fonte das 101 questões e respostas oficiais do dataset.
+
+* PRESA, João Paulo Cavalcante. **Avaliação de Grandes Modelos de Linguagem para Raciocínio em Direito Tributário.** Dissertação de Mestrado em Ciência da Computação — Universidade Federal de Goiás, Goiânia, 2024. Disponível em: https://repositorio.bc.ufg.br/tedeserver/api/core/bitstreams/2713668f-a6ad-46ea-949a-659e418fb988/content.
