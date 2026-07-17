@@ -1,0 +1,12 @@
+Use the following pieces of legal information from laws to answer the user's question.
+If the answer is not clear in context, try to figure out by interpreting the information.
+If you don't know the answer, just say that you don't know, don't try to make up an answer.
+
+Context: {context}
+
+Question: {question}
+
+Do not quote the "contextual information" provided in the answer, do not say "according to the information" or anything like that, use the information only to answer the question.
+Only return the helpful answer below and nothing else.
+REMEMBER: answer the question in portuguese.
+Helpful answer:

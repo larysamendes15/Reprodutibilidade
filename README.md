@@ -17,7 +17,8 @@ por pergunta.
 │   ├── 01_geracao_respostas/         #   Geração das respostas dos modelos avaliados
 │   │   ├── gerar_respostas_modelos_abertos.py
 │   │   ├── gerar_respostas_claude.py
-│   │   └── gerar_respostas_gemini.py
+│   │   ├── gerar_respostas_gemini.py
+│   │   └── gerar_respostas_gpt.py
 │   ├── 02_metricas_automaticas/      #   ROUGE-L, BLEU, BERTScore, Connectedness
 │   │   ├── calcular_metricas_automaticas.py
 │   │   └── gerar_ranking_metricas.py
@@ -27,6 +28,9 @@ por pergunta.
 │   └── 05_graficos/                  #   Geração de figuras e dashboards
 ├── data/
 │   └── tax_law_brazil_cosit/         # Dataset (perguntas, respostas oficiais, corpus)
+├── prompt/                           # Prompts usados no experimento (referência)
+│   ├── template_geracao_respostas.txt      # Template de geração (etapa 1, todos os modelos)
+│   └── prompt_julgamento_score_0_5.txt     # Prompt dos julgadores, score 0-5 (etapa 3)
 ├── results/
 │   ├── respostas_geradas/            # Respostas geradas por modelo (*_QAG.csv)
 │   ├── scores_julgadores/            # Scores atribuídos pelos 3 LLMs julgadores
@@ -100,6 +104,7 @@ Todos os scripts devem ser executados **a partir da raiz do repositório**
 python src/01_geracao_respostas/gerar_respostas_modelos_abertos.py   # modelos abertos via NVIDIA NIM
 python src/01_geracao_respostas/gerar_respostas_claude.py            # Claude (Anthropic)
 python src/01_geracao_respostas/gerar_respostas_gemini.py            # Gemini (Google)
+python src/01_geracao_respostas/gerar_respostas_gpt.py               # GPT-5.1 (OpenAI)
 ```
 
 Todos leem o dataset de `data/tax_law_brazil_cosit/` (split `tax_law`), usam o
@@ -213,6 +218,13 @@ Detalhes em `data/tax_law_brazil_cosit/README.md`.
 ## Reprodutibilidade
 
 - Seeds fixas (`SEED = 42`) nos scripts de métricas.
+- Os prompts do experimento estão versionados em [`prompt/`](prompt/) como
+  referência (os scripts têm os prompts embutidos no código):
+  `template_geracao_respostas.txt` é o template único da etapa 1, com
+  placeholders `{context}` (passagem-ouro) e `{question}`, usado por todos os
+  geradores; `prompt_julgamento_score_0_5.txt` é o prompt de avaliação da
+  etapa 3, com critérios, escala de score 0–5, exemplos few-shot e saída em
+  JSON, aplicado aos 3 julgadores.
 - As etapas 4 e 5 são determinísticas sobre os CSVs versionados.
 - As etapas 1 e 3 dependem de APIs de terceiros e podem produzir respostas
   ligeiramente diferentes entre execuções, mesmo com temperatura baixa.

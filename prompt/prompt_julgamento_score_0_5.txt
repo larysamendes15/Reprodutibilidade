@@ -1,0 +1,171 @@
+Instruções:
+Avalie a resposta gerada pela IA com base nos seguintes critérios:
+
+1. Verifique se a Resposta da IA está alinhada com a Resposta do Especialista, ou seja, se não existe nenhuma contradição relevante. Ignore termos diferentes ou pequenas informações a mais ou a menos, desde que não mudem o sentido jurídico da resposta.
+
+2. A Resposta do Especialista pode conter mais informações do que foi solicitado na pergunta. Se uma informação da Resposta do Especialista não for necessária para responder à pergunta, não use essa informação para penalizar a Resposta da IA.
+
+3. Se a Resposta da IA tiver mais informações do que a Resposta do Especialista, isso não deve ser penalizado automaticamente, desde que as informações adicionais estejam corretas, não gerem confusão jurídica e não contradigam a Resposta do Especialista.
+
+4. Verifique se a Resposta da IA responde suficientemente à questão. Para isso, veja se ela fornece as informações solicitadas na pergunta. Se a questão puder ser respondida com um simples "Não" ou "Sim", isso é aceitável, desde que a resposta esteja juridicamente correta.
+
+A avaliação deve retornar um score escalar de 0 a 5, conforme a seguinte escala:
+
+5 = resposta totalmente correta, suficiente e sem contradições. Informações adicionais corretas não devem reduzir o score, desde que não confundam nem mudem o sentido jurídico da resposta.
+
+4 = resposta correta e suficiente, mas com pequena omissão, menor precisão ou excesso de informação desnecessária que não compromete juridicamente a resposta.
+
+3 = resposta parcialmente correta, mas com omissão relevante ou excesso de informação que torna a resposta menos clara, menos objetiva ou pode gerar dúvida sobre o ponto jurídico principal.
+
+2 = resposta contém algum elemento correto, mas erra, omite ponto jurídico importante ou adiciona informação extra juridicamente problemática.
+
+1 = resposta majoritariamente incorreta, vaga, confusa ou pouco alinhada à Resposta do Especialista.
+
+0 = resposta contradiz a Resposta do Especialista, inventa informação essencial ou responde de forma juridicamente errada.
+
+Inclua uma justificativa curta explicando o score atribuído.
+
+A Avaliação deve ser um objeto JSON, com as chaves score e raciocinio.
+
+Exemplos:
+
+1.
+### Questão:
+Os rendimentos, decorrentes da prestação de serviços de consultoria técnica, pagos por pessoa jurídica domiciliada no Brasil a sua matriz no exterior estão sujeitos à legislação de preços de transferência?
+
+### Resposta do Especialista:
+Em primeiro lugar, há que distinguir se a prestação dos serviços no Brasil implicou transferência de tecnologia. Na hipótese de ficar comprovada a transferência de tecnologia, com a anuência do Instituto Nacional de Propriedade Industrial (INPI), a transação não estará sujeita às regras de preços de transferência consoante o estabelecido pelo art. 55 da IN RFB nº 1.312, de 2012. Nessa hipótese, a dedução de tais despesas está sujeita aos limites estabelecidos pelos arts. 362 a 365 do RIR/2018. Caso inexista transferência de tecnologia, esses serviços passam a se submeter às regras de preços de transferência.
+
+### Resposta da IA:
+Sim, estão sujeitos, a menos que haja transferência de tecnologia com anuência do INPI.
+
+### Avaliação:
+{{
+  "score": 5,
+  "raciocinio": "A resposta da IA responde corretamente à questão principal e menciona a exceção da transferência de tecnologia com anuência do INPI, sem contradição com a resposta especialista."
+}}
+
+2.
+### Questão:
+O que deve ser considerado como "contraprestações creditadas"?
+
+### Resposta do Especialista:
+Para efeito do disposto no art. 175 da Instrução Normativa RFB nº 1.700, de 2017, consideram-se contraprestações creditadas as contraprestações vencidas.
+
+### Resposta da IA:
+As contraprestações vencidas.
+
+### Avaliação:
+{{
+  "score": 5,
+  "raciocinio": "A resposta da IA apresenta exatamente a informação necessária para responder à questão, sem contradição ou omissão relevante."
+}}
+
+3.
+### Questão:
+Existe prazo para a compensação de prejuízos fiscais da atividade rural?
+
+### Resposta do Especialista:
+Não existe qualquer prazo para compensação de prejuízos fiscais da atividade rural.
+
+### Resposta da IA:
+O prazo é de 7 dias a partir da data do prejuízo, podendo se extender até 30 dias para compensação de prejuízos fiscais da atividade rural.
+
+### Avaliação:
+{{
+  "score": 0,
+  "raciocinio": "A resposta da IA contradiz diretamente a resposta especialista, pois afirma que existe prazo quando a resposta correta informa que não há prazo."
+}}
+
+4.
+### Questão:
+A base de cálculo negativa da CSLL poderá ser compensada com resultados apurados em períodos subsequentes?
+
+### Resposta do Especialista:
+Sim. A base de cálculo da CSLL, quando negativa, poderá ser compensada até o limite de 30% dos resultados apurados em períodos subsequentes, ajustados pelas adições e exclusões previstas na legislação.
+
+### Resposta da IA:
+Não. A base de cálculo da CSLL poderá ser compensada dos resultados apurados em períodos subsequentes.
+
+### Avaliação:
+{{
+  "score": 0,
+  "raciocinio": "A resposta da IA é contraditória e inicia afirmando 'Não', contrariando a resposta especialista, que afirma a possibilidade de compensação da base negativa da CSLL."
+}}
+
+5.
+### Questão:
+A base de cálculo negativa da CSLL poderá ser compensada com resultados apurados em períodos subsequentes?
+
+### Resposta do Especialista:
+Sim. A base de cálculo da CSLL, quando negativa, poderá ser compensada até o limite de 30% dos resultados apurados em períodos subsequentes, ajustados pelas adições e exclusões previstas na legislação.
+
+### Resposta da IA:
+Sim, a base de cálculo negativa da CSLL poderá ser compensada com resultados apurados em períodos subsequentes.
+
+### Avaliação:
+{{
+  "score": 3,
+  "raciocinio": "A resposta da IA acerta a possibilidade de compensação, mas omite informações juridicamente relevantes, como o limite de 30% e os ajustes por adições e exclusões."
+}}
+
+6.
+### Questão:
+A base de cálculo negativa da CSLL poderá ser compensada com resultados apurados em períodos subsequentes?
+
+### Resposta do Especialista:
+Sim. A base de cálculo da CSLL, quando negativa, poderá ser compensada até o limite de 30% dos resultados apurados em períodos subsequentes, ajustados pelas adições e exclusões previstas na legislação.
+
+### Resposta da IA:
+Sim, a base de cálculo negativa da CSLL poderá ser compensada com resultados apurados em períodos subsequentes, até o limite de 30%. Além disso, essa compensação deve observar os ajustes previstos na legislação aplicável, como adições e exclusões.
+
+### Avaliação:
+{{
+  "score": 5,
+  "raciocinio": "A resposta da IA cobre os elementos essenciais da resposta especialista e as informações adicionais estão alinhadas ao conteúdo jurídico esperado."
+}}
+
+7.
+### Questão:
+A base de cálculo negativa da CSLL poderá ser compensada com resultados apurados em períodos subsequentes?
+
+### Resposta do Especialista:
+Sim. A base de cálculo da CSLL, quando negativa, poderá ser compensada até o limite de 30% dos resultados apurados em períodos subsequentes, ajustados pelas adições e exclusões previstas na legislação.
+
+### Resposta da IA:
+Sim, a base negativa da CSLL pode ser compensada em períodos subsequentes até o limite de 30%. Essa compensação também pode envolver outros procedimentos fiscais, contábeis e administrativos, dependendo do regime tributário, da escrituração, da atividade da empresa e de eventuais obrigações acessórias aplicáveis.
+
+### Avaliação:
+{{
+  "score": 4,
+  "raciocinio": "A resposta da IA cobre o ponto principal e não contradiz a resposta especialista, mas traz informações adicionais genéricas e pouco necessárias."
+}}
+
+8.
+### Questão:
+A base de cálculo negativa da CSLL poderá ser compensada com resultados apurados em períodos subsequentes?
+
+### Resposta do Especialista:
+Sim. A base de cálculo da CSLL, quando negativa, poderá ser compensada até o limite de 30% dos resultados apurados em períodos subsequentes, ajustados pelas adições e exclusões previstas na legislação.
+
+### Resposta da IA:
+Sim, a base negativa da CSLL pode ser compensada em períodos subsequentes, mas isso depende de autorização prévia da Receita Federal e pode ser feito integralmente quando a empresa comprovar prejuízo fiscal acumulado.
+
+### Avaliação:
+{{
+  "score": 2,
+  "raciocinio": "A resposta acerta a possibilidade de compensação, mas adiciona informações problemáticas que não aparecem na resposta especialista, como autorização prévia e compensação integral."
+}}
+
+Agora faça a Avaliação:
+
+### Questão:
+{questao}
+
+### Resposta do Especialista:
+{resposta_especialista}
+
+### Resposta da IA:
+{resposta_ia}
+
+### Avaliação:
